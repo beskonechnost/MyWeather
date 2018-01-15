@@ -1,4 +1,5 @@
 import myWeather.GetWeatherData;
+import myWeather.usb.USBWorker;
 
 import javax.swing.*;
 
@@ -8,14 +9,27 @@ import javax.swing.*;
 public class Main {
     public static void main(String[] args) {
 
-        GetWeatherData.returnAndWrite();
-        JFileChooser f = new JFileChooser();
-        f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        f.setDialogTitle("Select the path to save");
+        String nameFleshDiskFAT32 = USBWorker.usbWorker();
+        if(nameFleshDiskFAT32 != null){
+            GetWeatherData.returnAndWrite(nameFleshDiskFAT32);
+            JDialog jd = new JDialog();
+            JOptionPane.showMessageDialog(jd,
+                    "Файл записан на диск "+nameFleshDiskFAT32,
+                    "Файл записан!",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }else{
+            JFileChooser f = new JFileChooser();
+            f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            f.setDialogTitle("Select the path to save");
+            f.showSaveDialog(null);
 
-        f.showSaveDialog(null);
+            GetWeatherData.returnAndWrite(f.getSelectedFile().toString());
 
-        System.out.println(f.getCurrentDirectory());
-        System.out.println(f.getSelectedFile());
+            JDialog jd1 = new JDialog();
+            JOptionPane.showMessageDialog(jd1,
+                    "Файл записан в по выбранному пути "+f.getSelectedFile().toString(),
+                    "Файл записан!",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }

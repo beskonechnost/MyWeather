@@ -23,30 +23,6 @@
             <version>1.1.1</version>
         </dependency>
 
-        <!-- For using just usb4java without javax-usb -->
-        <dependency>
-            <groupId>org.usb4java</groupId>
-            <artifactId>usb4java</artifactId>
-            <version>1.2.0</version>
-        </dependency>
-
-
-        <!-- For using usb4java with javax-usb -->
-        <dependency>
-            <groupId>org.usb4java</groupId>
-            <artifactId>usb4java-javax</artifactId>
-            <version>1.2.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.usb/usb-api -->
-        <dependency>
-            <groupId>javax.usb</groupId>
-            <artifactId>usb-api</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-
-
-
-
     </dependencies>
 
 

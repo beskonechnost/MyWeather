@@ -18,7 +18,6 @@ import java.net.URL;
 public class GetWeatherData {
 
     public static final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?q=Kiev,ua&units=metric&appid=2d9bde515aa3727f422e2037276b2490";
-    public static String info;
 
     public static URL createUrl(String link) {
         try {
@@ -60,11 +59,6 @@ public class GetWeatherData {
             JSONObject wind = (JSONObject) weatherJsonObject.get("wind");
             sb.append("Скорость ветра на данный момент: ").append(wind.get("speed")).append("м/с;").append(System.getProperty("line.separator"));
 
-            //WriterInFileProperties.writerInFileProperties(sb);
-            info = sb.toString();
-            System.out.println(info);
-
-
 
         } catch (org.json.simple.parser.ParseException e) {
             e.printStackTrace();
@@ -72,22 +66,10 @@ public class GetWeatherData {
         return sb;
     }
 
-    /*
-    // формируем новый JSON объект из нужных нам погодных данных
-    public static String buildWeatherJson() {
-        // для простоты примера просто хардкодим нужные данные в методе
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", "Лондон");
-        jsonObject.put("main", "Солнечно");
-        jsonObject.put("description", "Мороз трескучий, На небе ни единой тучи");
-
-        return jsonObject.toJSONString();
-    }
-    */
-    public static void returnAndWrite(){
+    public static void returnAndWrite(String path){
         URL url = GetWeatherData.createUrl(WEATHER_URL);
         String resultJson = GetWeatherData.parseUrl(url);
-        WriterInFileProperties.writerInFileProperties(GetWeatherData.parseWeatherJson(resultJson));
+        WriterInFileProperties.writerInFileProperties(GetWeatherData.parseWeatherJson(resultJson), path);
         WriterBinaryInformation.writerBinaryInformation(BinaryConverter.stringToBinary(resultJson));
     }
 
