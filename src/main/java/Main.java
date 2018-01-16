@@ -29,6 +29,7 @@ public class Main {
             f.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             f.setDialogTitle("Select the path to save");
             int val = f.showOpenDialog(null);
+
             if (val == JFileChooser.APPROVE_OPTION) {
                 GetWeatherData.returnAndWrite(f.getSelectedFile().toString());
 
