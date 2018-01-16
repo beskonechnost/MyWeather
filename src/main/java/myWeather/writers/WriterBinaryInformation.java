@@ -12,7 +12,7 @@ public class WriterBinaryInformation {
         StringBuilder sb = new StringBuilder();
         Date date = new Date();
         sb.append(date.getDate()).append(".").append(date.getMonth()+1).append("-").append(date.getHours()).append(".").append(date.getMinutes())
-                .append("_").append(" WeatherBinary");
+                .append("_").append(" WeatherBinary.txt");
         try(FileWriter writer = new FileWriter(sb.toString(), false))
         {
             writer.write(binaryString.toString());
